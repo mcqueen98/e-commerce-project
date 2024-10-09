@@ -24,7 +24,7 @@ if (isset($_GET['delete_product'])) {
 
     if ($deleteProductStmt->execute()) {
       echo "<script>alert('Product deleted successfully');</script>";
-
+      echo "<script>window.open('home.php','_self');</script>";
     }
   } else {
     echo "<script>alert('Product not found or image does not exist');</script>";
