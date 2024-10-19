@@ -50,7 +50,7 @@ include '../function/function.php';
                 <li class="nav-item">
                     <a class="nav-link" href="home.php?view_order">order</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="logout.php">logout</a>
                 </li>
                 <li class="nav-item">

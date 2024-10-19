@@ -79,15 +79,7 @@ include('function/function.php');
         
     </nav>
 
-    <!-- Header -->
-    <header class="bg-dark py-5" id="main-header">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Your Pets Deserve The Best</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Looking for your Style? Shop Now!</p>
-            </div>
-        </div>
-    </header>
+   
     <div class="container">
       <h3> <?php
           if(!isset($_SESSION['user_username'])){
@@ -116,7 +108,7 @@ include('function/function.php');
          <div class="row">
              <?php
                 cart();
-               getproduct();  
+              view_details(); 
                get_unique_cat();
                get_unique_brand();  
                

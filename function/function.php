@@ -32,8 +32,9 @@ function getproduct()
             <div class='col-md-4 mb-3'>
                 <div class='card'>
                     <div class='card-body'>
-                        <img src='./uploads/$image' alt='$product_title' class='img-fluid'>
-                        <h1>$product_title</h1>
+                       
+                <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
+                                   <h1>$product_title</h1>
                         <p>$product_des</p>
                         <p>Price: $product_price</p>
             ";
@@ -41,8 +42,12 @@ function getproduct()
             // Check if the user is logged in
             if (isset($_SESSION['user_username'])) {
                 echo "<a href='index.php?add_to_cart=$product_id'>Add to Cart</a>";
+                 echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
             } else {
                 echo "<a href='./users/user_login.php' class='btn btn-secondary'>Login to Add to Cart</a>";
+
+                echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
+  
             }
 
             echo "
@@ -102,14 +107,17 @@ function get_unique_brand(){
             <div class='col-md-4 mb-3'>
                 <div class='card'>
                     <div class='card-body'>
-                        <img src='./uploads/$image' alt='$product_title' class='img-fluid'>
-                        <h1>$product_title</h1>
+                       
+               <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
+                                    <h1>$product_title</h1>
                         <p>$product_des</p>
                          <p>Price: $product_price</p>";
                          if (isset($_SESSION['user_username'])) {
                             echo "<a href='index.php?add_to_cart=$product_id'>Add to Cart</a>";
+                             echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
                         } else {
                             echo "<a href='./users/user_login.php' class='btn btn-secondary'>Login to Add to Cart</a>";
+                            echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
                         }
             
                         echo "
@@ -174,14 +182,17 @@ function get_unique_cat()
                 <div class='col-md-4 mb-3'>
                     <div class='card'>
                         <div class='card-body'>
-                            <img src='./uploads/$image' alt='$product_title' class='img-fluid'>
-                            <h1>$product_title</h1>
+                          
+                <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
+                                       <h1>$product_title</h1>
                             <p>$product_des</p>
                              <p>Price: $product_price</p>";
                          if (isset($_SESSION['user_username'])) {
                             echo "<a href='index.php?add_to_cart=$product_id'>Add to Cart</a>";
+                             echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
                         } else {
                             echo "<a href='./users/user_login.php' class='btn btn-secondary'>Login to Add to Cart</a>";
+                            echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
                         }
             
                         echo "
@@ -227,14 +238,18 @@ function search() {
                 <div class='col-md-4 mb-3'>
                     <div class='card'>
                         <div class='card-body'>
-                            <img src='./uploads/$image' alt='$product_title' class='img-fluid'>
-                            <h1>$product_title</h1>
+                          
+                <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
+                                       <h1>$product_title</h1>
                             <p>$product_des</p>
                              <p>Price: $product_price</p>";
                              if (isset($_SESSION['user_username'])) {
                                 echo "<a href='index.php?add_to_cart=$product_id'>Add to Cart</a>";
+                                 echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
                             } else {
                                 echo "<a href='user_login.php' class='btn btn-secondary'>Login to Add to Cart</a>";
+                                echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
+  
                             }
                 
                             echo "
@@ -276,14 +291,17 @@ function display()
                 <div class='col-md-4 mb-3'>
                     <div class='card'>
                         <div class='card-body'>
-                            <img src='./uploads/$image' alt='$product_title' class='img-fluid'>
-                            <h1>$product_title</h1>
+                              <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
+                         
+                                 <h1>$product_title</h1>
                             <p>$product_des</p>
                              <p>Price: $product_price</p>";
                          if (isset($_SESSION['user_username'])) {
                             echo "<a href='index.php?add_to_cart=$product_id'>Add to Cart</a>";
+                             echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
                         } else {
                             echo "<a href='./users/user_login.php' class='btn btn-secondary'>Login to Add to Cart</a>";
+                            echo "<a href='product_details.php?product_id=$product_id' class='ml-4' >View Details</a>";
                         }
             
                         echo "
@@ -295,6 +313,60 @@ function display()
                            
         }
     }  
+}
+
+function view_details(){
+    global $conn;
+
+    if (isset($_GET['product_id']) && !isset($_GET['category']) && !isset($_GET['brand'])) {
+        $product_id = $_GET['product_id']; 
+        $get_product = "SELECT * FROM products WHERE id = $product_id";
+        $result_query = mysqli_query($conn, $get_product);
+
+        if (mysqli_num_rows($result_query) > 0) {
+            while ($row = mysqli_fetch_assoc($result_query)) {
+                // Fetching data from the database
+                $product_id = $row['id'];
+                $product_title = $row['product_title'];
+                $product_des = $row['product_des'];
+                $product_price = $row['price'];
+                $image = $row['product_img'];
+                // $category_id = $row['category_id'];
+                // $brand_id = $row['brand_id'];
+
+                // Display product details
+                echo "
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-md-5 pb-5'>
+                          
+                <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
+                                       </div>
+                        <div class='col-md-7'>
+                            <h1>$product_title</h1>
+                            
+                            <h2>Price: $product_price</h2>
+                            <p>Description: $product_des</p>
+                           ";
+
+                if (isset($_SESSION['user_username'])) {
+                    echo "<a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to Cart</a>";
+                } else {
+                    echo "<a href='./users/user_login.php' class='btn btn-secondary'>Login to Add to Cart</a>";
+                }
+
+               
+                echo "
+                        </div>
+                    </div>
+                </div>";
+            }
+        } else {
+            echo "<p class='text-center'>Product not found.</p>";
+        }
+    } else {
+        echo "<p class='text-center'>No product selected.</p>";
+    }
 }
 
 
