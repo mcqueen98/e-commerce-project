@@ -8,6 +8,7 @@ if (isset($_POST['add_product'])) {
     $category_id = $_POST['category'];
     $brand_id = $_POST['brand'];
     $price = $_POST['price'];
+    $state = $_POST['state'];
 
     // Handle image upload
     $image = $_FILES['product_img']['name'];
@@ -23,8 +24,8 @@ if (isset($_POST['add_product'])) {
     // Move the uploaded file to the specified folder
     if (move_uploaded_file($image_tmp, $image_folder)) {
         // Insert product data into the database using $uniqueName
-        $insert_product = "INSERT INTO products (product_title, product_des, category_id, brand_id, product_img, price) 
-                           VALUES ('$product_title', '$product_des', '$category_id', '$brand_id', '$uniqueName', '$price')";
+        $insert_product = "INSERT INTO products (product_title, product_des, category_id, brand_id, product_img, price, states) 
+                           VALUES ('$product_title', '$product_des', '$category_id', '$brand_id', '$uniqueName', '$price','$state')";
 
         $result = mysqli_query($conn, $insert_product);
 
@@ -85,6 +86,16 @@ if (isset($_POST['add_product'])) {
                 ?>
             </select>
         </div>
+        <div class="form-group">
+    <label for="state">Category:</label>
+    <select class="form-control" id="state" name="state" required>
+        <option value="">Select state</option>
+        <option value="new" selected>New</option>
+        <option value="out">Out</option>
+        <option value="default">Default</option>
+    </select>
+</div>
+
 
         <div class="form-group">
             <label for="image">Product Image:</label>

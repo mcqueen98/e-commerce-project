@@ -1,6 +1,8 @@
 <?php
-include('../function/function.php');
+require_once '../function/function.php';
 secure();
+
+
 if (isset($_GET['edit_profile'])) {
     $username = $_SESSION['user_username'];
     $get_user = "SELECT * FROM user WHERE user_name = '$username'";
@@ -19,13 +21,13 @@ if (isset($_GET['edit_profile'])) {
         $user_password = $row['password'];
 
         if (isset($_POST['submit'])) {
-            $username = $_POST['username'];
+            // $username = $_POST['username'];
             $email = $_POST['email'];
             $password = $_POST['password'];
         
             // Hash the new password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        
+
             $update_user = "UPDATE user SET user_name = '$username', user_email = '$email', password = '$hashed_password' WHERE user_id = '$user_id'";
             $query_update = mysqli_query($conn, $update_user);
             

@@ -57,7 +57,7 @@ include('../function/function.php');
             echo "<script>alert('Username already exists. Please choose another one.');</script>";
         } elseif ($password == $confirm_password) {
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-            $_SESSION['username'] = $username; // Set session username before generating user_ip
+            $_SESSION['user_username'] = $username;
             $user_ip = getUniqueIdentifier(); // Get user IP after setting the session
 
             $insert_user = "INSERT INTO user (user_name, user_email, password, user_ip) 

@@ -1,7 +1,8 @@
 <?php
-session_start();
+@session_start();
 include('../inc/dbconnection.php');
-include('../function/function.php');
+require_once '../function/function.php';
+
 
 
 ?>
@@ -16,27 +17,18 @@ include('../function/function.php');
   </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info " >
-        <a class="navbar-brand" href="#">Pet Shop</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="../index.php">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../product.php">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
-                </li>
-           
-        </div>
-        
-       
-    </nav>
+    <nav class="navbar navbar-dark bg-info">
+    <a class="navbar-brand" href="#">AS</a>
+    <ul class="navbar-nav d-flex flex-row">
+        <li class="nav-item active me-3">
+            <a class="nav-link" href="../index.php">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item mx-3">
+            <a class="nav-link" href="../product.php">Products</a>
+        </li>
+    </ul>
+</nav>
+
 
  
     <div class="container">
@@ -75,7 +67,7 @@ if(isset($_GET['my_order'])){
     exit();
 }
 if (isset($_GET['delete_profile'])) {
-    $user_name = $_SESSION['username'];
+    $user_name = $_SESSION['user_username'];
     // Assuming you have the connection in $conn
     $delete_user = "DELETE FROM user WHERE user_name = '$user_name'";
     $delete_query = mysqli_query($conn, $delete_user);

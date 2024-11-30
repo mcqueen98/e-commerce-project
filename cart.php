@@ -1,6 +1,6 @@
 <?php
 include('./inc/dbconnection.php');
-include('function/function.php');
+require_once('function/function.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@ include('function/function.php');
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-info " >
-        <a class="navbar-brand" href="#">Pet Shop</a>
+        <a class="navbar-brand" href="#">AS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>  

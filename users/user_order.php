@@ -1,6 +1,8 @@
 <?php
-include('../function/function.php');
+require_once '../function/function.php';
 secure();
+
+
         $username = $_SESSION['user_username'];
         
         // Fetch user information
@@ -10,7 +12,7 @@ secure();
         $user_id = $row['user_id'];
         ?>
           <div class="card">
-    <div class="card-body">
+          <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>

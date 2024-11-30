@@ -16,7 +16,16 @@ body {
   flex-direction: column;
   height: 100vh;
 }
+.desc {
+  /* Set the maximum number of lines */
+  --max-line: 1;
 
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--max-line);
+  text-overflow: ellipsis; /* Ensures "..." at end */
+}
 .container {
   background-color: #fff;
   border-radius: 30px;

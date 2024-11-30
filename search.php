@@ -9,12 +9,25 @@ include('function/function.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
- 
+    <style>
+    .desc {
+    /* Set the maximum number of lines */
+    --max-line: 1;
+    
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--max-line); 
+    text-overflow: ellipsis; /* Ensures "..." at end */
+    
+}
+
+ </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-info " >
-        <a class="navbar-brand" href="#">Pet Shop</a>
+        <a class="navbar-brand" href="#">AS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -79,8 +92,8 @@ include('function/function.php');
     <header class="bg-dark py-5" id="main-header">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Your Pets Deserve The Best</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Looking for your pet's needs? Shop Now!</p>
+                <h1 class="display-4 fw-bolder">You Deserve The Best</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Looking for your style? Shop Now!</p>
             </div>
         </div>
     </header>
@@ -127,7 +140,7 @@ include('function/function.php');
 	  <!-- Footer -->
 	  <footer class="bg-dark text-white py-4">
         <div class="container text-center">
-            <p class="mb-0">&copy; <?php echo date('Y'); ?> Pet Shop. All rights reserved.</p>
+            <p class="mb-0">&copy; <?php echo date('Y'); ?> AS. All rights reserved.</p>
         </div>
     </footer>
 

@@ -25,6 +25,7 @@ if ($count_product > 0) {  // Only proceed if there are products in the cart
     while ($row_product = mysqli_fetch_array($result_user)) {
         $cart_id = $row_product['cart_id'];
         $cart_price = $row_product['product_price'];
+        
         $quantity = $row_product['quantity']; // Get quantity for each product
         $product_id = $row_product['product_id']; // Assuming 'product_id' is the correct foreign key
 
@@ -40,7 +41,7 @@ if ($count_product > 0) {  // Only proceed if there are products in the cart
             $username = isset($_SESSION['user_username']);
             
             // Insert each cart item into the pending table
-            //pending is used to verify by admin
+            //pending is used to verify by admin REPLACE CART PRICE WITH TOTAL PRICE
             $insert_pending_order = "INSERT INTO `pending` (`pro_id`, `quantity`, `amount`, `product_id`, `user_id`) 
                                      VALUES ('$cart_id', '$quantity', '$cart_price', '$product_id', '$user_id')";
             $result_pending_order = mysqli_query($conn, $insert_pending_order);

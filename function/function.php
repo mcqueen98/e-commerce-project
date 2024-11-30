@@ -3,18 +3,19 @@
 // include('./inc/dbconnection.php');
 
 function secure() {
-    if(!isset($_SESSION['id'])){
-      
+    if(!isset($_SESSION['user_username'])){
+    //    echo "Please login first";
         header('Location: ../index.php');
         die();
     }
 }
+
 function getproduct()
 {
     global $conn;
     if (!isset($_GET['category']) && !isset($_GET['brand'])) {
 
-        $select_product = "SELECT * FROM products ORDER BY RAND() LIMIT 0,2";
+        $select_product = "SELECT * FROM products ORDER BY RAND() LIMIT 0,5";
         $result_query = mysqli_query($conn, $select_product);
 
         while ($row = mysqli_fetch_assoc($result_query)) {
@@ -35,8 +36,8 @@ function getproduct()
                        
                 <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
                                    <h1>$product_title</h1>
-                        <p>$product_des</p>
-                        <p>Price: $product_price</p>
+                        <p class='desc' title='$product_des' >$product_des</p>
+                        <p class='desc' >Price: $product_price</p>
             ";
 
             // Check if the user is logged in
@@ -110,7 +111,7 @@ function get_unique_brand(){
                        
                <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
                                     <h1>$product_title</h1>
-                        <p>$product_des</p>
+                         <p class='desc' title='$product_des' >$product_des</p>
                          <p>Price: $product_price</p>";
                          if (isset($_SESSION['user_username'])) {
                             echo "<a href='index.php?add_to_cart=$product_id'>Add to Cart</a>";
@@ -185,7 +186,7 @@ function get_unique_cat()
                           
                 <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
                                        <h1>$product_title</h1>
-                            <p>$product_des</p>
+                             <p class='desc' title='$product_des' >$product_des</p>
                              <p>Price: $product_price</p>";
                          if (isset($_SESSION['user_username'])) {
                             echo "<a href='index.php?add_to_cart=$product_id'>Add to Cart</a>";
@@ -241,7 +242,7 @@ function search() {
                           
                 <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
                                        <h1>$product_title</h1>
-                            <p>$product_des</p>
+                             <p class='desc' title='$product_des' >$product_des</p>
                              <p>Price: $product_price</p>";
                              if (isset($_SESSION['user_username'])) {
                                 echo "<a href='index.php?add_to_cart=$product_id'>Add to Cart</a>";
@@ -285,16 +286,17 @@ function display()
                 $image = $row['product_img'];
                 $category_id = $row['category_id'];
                 $brand_id = $row['brand_id'];
+                $states = $row['states'];
     
                 // Display product details
                 echo "
                 <div class='col-md-4 mb-3'>
-                    <div class='card'>
+                    <div class='card cad-$states'>
                         <div class='card-body'>
-                              <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
+                              <img src='./uploads/$image' alt='$product_title' class=' card-img-top object-fit-contain' style='height: 300px;'>
                          
-                                 <h1>$product_title</h1>
-                            <p>$product_des</p>
+                                 <h1 class='desc'>$product_title</h1>
+                          <p class='desc' title='$product_des' > $product_des</p>
                              <p>Price: $product_price</p>";
                          if (isset($_SESSION['user_username'])) {
                             echo "<a href='index.php?add_to_cart=$product_id'>Add to Cart</a>";

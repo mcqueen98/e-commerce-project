@@ -12,12 +12,24 @@ include('function/function.php');
     <title>Home Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
- 
+ <style>
+     .desc {
+    /* Set the maximum number of lines */
+    --max-line: 1;
+    
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--max-line); 
+    text-overflow: ellipsis; /* Ensures "..." at end */
+    
+}
+ </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-info " >
-        <a class="navbar-brand" href="#">Pet Shop</a>
+        <a class="navbar-brand" href="#">AS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,7 +43,7 @@ include('function/function.php');
                     <a class="nav-link" href="product.php">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link" href="about.php">About Us</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="cart.php">cart  <sup  style="color:white;">
@@ -83,7 +95,7 @@ include('function/function.php');
     <header class="bg-dark py-5" id="main-header">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Your Pets Deserve The Best</h1>
+                <h1 class="display-4 fw-bolder">You Deserve The Best</h1>
                 <p class="lead fw-normal text-white-50 mb-0">Looking for your Style? Shop Now!</p>
             </div>
         </div>
@@ -99,11 +111,10 @@ include('function/function.php');
           <?php
           if(!isset($_SESSION['user_username'])){
             echo '
-            <a class="nav-link" href="users/user_login.php">login </a>  ';
+            <a class="nav-link btn btn-outline-dark " href="users/user_login.php">login </a>  ';
         }else{
-            echo '
-            <a class="nav-link" href="users/logout.php">logout</a>
-            <a class="nav-link" href="users/profile.php">profile</a>
+            echo ' <button class="btn btn-danger "> <a class="text-white" href="users/logout.php">logout</a></button>
+            <button class="btn btn-primary "> <a class="text-white" href="users/profile.php">profile</a></button>
             ';
         }?>
        </h3>

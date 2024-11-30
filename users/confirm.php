@@ -17,14 +17,16 @@ if(isset($_POST['submit'])){
     $order_id = $_POST['order_id'];
     $amount = $_POST['amount'];
     $mode = $_POST['mode'];
-   
-    $insert_order = "INSERT INTO payment (o_id, amount, mode) VALUES ('$order_id', '$amount', '$mode')";
+    $contact = $_POST['contact'];
+    $address = $_POST['address'];
+    $insert_order = "INSERT INTO payment (o_id, amount, mode, contact, address) VALUES ('$order_id', '$amount', '$mode', '$contact', '$address')";
     $run_order = mysqli_query($conn, $insert_order);
     if($run_order){
         echo "<script>alert('Payment Successfully Done')</script>";
         echo "<script>window.open('profile.php','_self')</script>";
     }
-    
+   
+
     $update_order = "UPDATE orders SET status = 'completed' WHERE id = '$order_id'";
     $run_update = mysqli_query($conn, $update_order);
 
@@ -38,6 +40,27 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Form</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+     /* Remove spinner arrows in Chrome, Edge, and Safari */
+      input[type="number"].no-spinner::-webkit-inner-spin-button,
+       input[type="number"].no-spinner::-webkit-outer-spin-button {
+       -webkit-appearance: none;
+       margin: 0;
+        }
+
+           
+            input[type="number"].no-spinner {
+                  -moz-appearance: textfield;
+             }
+        input:invalid {
+              border:2px solid red;
+      }
+
+           input:valid {
+       border:2px solid green;
+     }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -59,6 +82,26 @@ if(isset($_POST['submit'])){
                    
                     <option value="bank_transfer">cash on delivery</option>
                 </select>
+            </div>
+            <div class="form-group">
+                  <label for="contact">Contact</label>
+                       <input 
+                             type="text" 
+                             class="form-control" 
+                             id="contact" 
+                             name="contact" 
+                             placeholder="Enter contact" 
+                             maxlength="10" 
+                             pattern="\d{10}" 
+                             title="Contact must be exactly 10 digits"
+                             required
+                           >
+            </div>
+
+
+             <div class="form-group">
+                <label for="address">address</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address"  >
             </div>
             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
         </form>
