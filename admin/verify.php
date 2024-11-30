@@ -9,8 +9,8 @@
                 <th>Order ID</th>
                 <th>Status</th>
                 <th>Amount</th>
-                <th>$contact</th>
-                <th>$address</th>
+                <th>contact</th>
+                <th>address</th>
             </tr>
         </thead>
         <tbody>
