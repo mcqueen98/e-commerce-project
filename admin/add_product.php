@@ -87,7 +87,7 @@ if (isset($_POST['add_product'])) {
             </select>
         </div>
         <div class="form-group">
-    <label for="state">Category:</label>
+    <label for="state">Status:</label>
     <select class="form-control" id="state" name="state" required>
         <option value="">Select state</option>
         <option value="new" selected>New</option>

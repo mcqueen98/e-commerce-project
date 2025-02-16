@@ -25,7 +25,7 @@ $user_id = $row_user['user_id'];
 
 
     <h1>payment</h1>
-    <h2><a href="order.php?user_id=<?php echo $user_id; ?>"> ( setting order)pay offline</a></h2>
+    <h2><a href="order.php?user_id=<?php echo $user_id; ?>"> pay offline</a></h2>
 
 
 

@@ -23,7 +23,21 @@ include('function/function.php');
     -webkit-line-clamp: var(--max-line); 
     text-overflow: ellipsis; /* Ensures "..." at end */
     
-}
+   }
+       div[class^="card"][class*="new"] {
+        box-shadow: 0 0 15px 5px rgba(229, 255, 0, 0.5); 
+        transition: box-shadow 0.3s ease-in-out; 
+      }
+      div[class^="card"][class*="new"]:hover {
+        box-shadow: 0 0 25px 10px rgba(229, 255, 0, 0.8); /* Brighter glow on hover */
+      }
+
+     div[class^='card'][class*='out'] {
+            filter: grayscale(1);
+                opacity: 0.5;
+        }
+
+
  </style>
 </head>
 <body>
@@ -92,7 +106,7 @@ include('function/function.php');
     </nav>
 
     <!-- Header -->
-    <header class="bg-dark py-5" id="main-header">
+    <header class="bg-dark py-1" id="main-header">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">You Deserve The Best</h1>

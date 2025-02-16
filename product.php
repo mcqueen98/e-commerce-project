@@ -11,31 +11,34 @@ include('function/function.php');
     <title>Home Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
- <style>
-    .desc {
-    /* Set the maximum number of lines */
-    --max-line: 1;
+    <style>
+         .desc {
+             /* Set the maximum number of lines */
+              --max-line: 1;
     
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: var(--max-line); 
-    text-overflow: ellipsis; /* Ensures "..." at end */
+             display: -webkit-box;
+              overflow: hidden;
+             -webkit-box-orient: vertical;
+             -webkit-line-clamp: var(--max-line); 
+             text-overflow: ellipsis; /* Ensures "..." at end */
     
-}
-   div[class^='card'][class*='new'] {
-    filter: brightness(1.2); 
-    opacity: 1;     
-} 
+          }
+         div[class^="card"][class*="new"] {
+        box-shadow: 0 0 15px 5px rgba(229, 255, 0, 0.5); 
+        transition: box-shadow 0.3s ease-in-out; 
+      }
+      div[class^="card"][class*="new"]:hover {
+        box-shadow: 0 0 25px 10px rgba(229, 255, 0, 0.8); /* Brighter glow on hover */
+      }
 
      div[class^='card'][class*='out'] {
-  filter: grayscale(1);
-  opacity: 0.5;
- }
+            filter: grayscale(1);
+                opacity: 0.5;
+        }
 
 
- </style>
- </head>
+    </style>
+</head>
 <body>
     
     <!-- Navbar -->
@@ -47,14 +50,14 @@ include('function/function.php');
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="product.php">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link" href="about.php">About Us</a>
                 </li>
                 <li class="nav-item active">
                 <a class="nav-link" href="cart.php">cart  <sup  style="color:white;">
@@ -100,7 +103,7 @@ include('function/function.php');
 
     <!-- Header -->
     <header class="bg-dark py-5" id="main-header">
-        <div class="container px-4 px-lg-5 my-5">
+        <div class="container px-4 px-lg-5 ">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">You Deserve The Best</h1>
                 <p class="lead fw-normal text-white-50 mb-0">Looking for your style? Shop Now!</p>

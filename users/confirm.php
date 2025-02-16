@@ -9,8 +9,9 @@ if(isset($_GET['my_order'])){
     $get_order_detail = "SELECT * FROM orders WHERE id = '$order_id'";
     $run_order = mysqli_query($conn, $get_order_detail);
     $row_order = mysqli_fetch_array($run_order);
-    
+    $quantity = $row_order['total_pro'];
     $amount = $row_order['amount'];
+    $amount = $quantity * $amount;
 }
 
 if(isset($_POST['submit'])){
@@ -19,17 +20,23 @@ if(isset($_POST['submit'])){
     $mode = $_POST['mode'];
     $contact = $_POST['contact'];
     $address = $_POST['address'];
+
+    // Backend validation for contact
+    if (!preg_match('/^\d{10}$/', $contact)) {
+        echo "<script>alert('Invalid contact number. Please enter a valid 10-digit number.')</script>";
+        echo "<script>window.open('profile.php','_self')</script>";
+        exit();
+    }
+
     $insert_order = "INSERT INTO payment (o_id, amount, mode, contact, address) VALUES ('$order_id', '$amount', '$mode', '$contact', '$address')";
     $run_order = mysqli_query($conn, $insert_order);
     if($run_order){
-        echo "<script>alert('Payment Successfully Done')</script>";
+        echo "<script>alert('Orde placed Successfully .We will contact you soon within 24 hours')</script>";
         echo "<script>window.open('profile.php','_self')</script>";
     }
-   
 
     $update_order = "UPDATE orders SET status = 'completed' WHERE id = '$order_id'";
     $run_update = mysqli_query($conn, $update_order);
-
 }
 
 ?>
@@ -77,10 +84,10 @@ if(isset($_POST['submit'])){
             <div class="form-group">
                 <label for="paymentOption">Payment Option</label>
                 <select class="form-control" id="paymentOption" name="mode">
-                    <option value="">Select Payment Option</option>
+                    <!-- <option value="">Select Payment Option</option>
                     <option value="credit_card">Credit Card</option>
-                   
-                    <option value="bank_transfer">cash on delivery</option>
+                    -->
+                    <option value="Cash_on_delivery">cash on delivery</option>
                 </select>
             </div>
             <div class="form-group">

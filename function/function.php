@@ -15,7 +15,7 @@ function getproduct()
     global $conn;
     if (!isset($_GET['category']) && !isset($_GET['brand'])) {
 
-        $select_product = "SELECT * FROM products ORDER BY RAND() LIMIT 0,5";
+        $select_product = "SELECT * FROM products ORDER BY RAND() LIMIT 0,4";
         $result_query = mysqli_query($conn, $select_product);
 
         while ($row = mysqli_fetch_assoc($result_query)) {
@@ -27,15 +27,15 @@ function getproduct()
             $image = $row['product_img'];
             $category_id = $row['category_id'];
             $brand_id = $row['brand_id'];
-
+            $states = $row['states'];
             // Display product details
             echo "
             <div class='col-md-4 mb-3'>
-                <div class='card'>
+                <div class='card card-$states'>
                     <div class='card-body'>
                        
                 <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
-                                   <h1>$product_title</h1>
+                                   <h1 class='desc'>$product_title</h1>
                         <p class='desc' title='$product_des' >$product_des</p>
                         <p class='desc' >Price: $product_price</p>
             ";
@@ -110,7 +110,7 @@ function get_unique_brand(){
                     <div class='card-body'>
                        
                <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
-                                    <h1>$product_title</h1>
+                                    <h1 class='desc'>$product_title</h1>
                          <p class='desc' title='$product_des' >$product_des</p>
                          <p>Price: $product_price</p>";
                          if (isset($_SESSION['user_username'])) {
@@ -185,7 +185,7 @@ function get_unique_cat()
                         <div class='card-body'>
                           
                 <img src='./uploads/$image' alt='$product_title' class='card-img-top object-fit-contain' style='height: 300px;'>
-                                       <h1>$product_title</h1>
+                                       <h1 class='desc'>$product_title</h1>
                              <p class='desc' title='$product_des' >$product_des</p>
                              <p>Price: $product_price</p>";
                          if (isset($_SESSION['user_username'])) {
@@ -268,7 +268,7 @@ function search() {
     }
 }
 function display()
-
+//display all
     {
         global $conn;
         if( !isset($_GET['category']) && !isset($_GET['brand'])) {
@@ -291,7 +291,7 @@ function display()
                 // Display product details
                 echo "
                 <div class='col-md-4 mb-3'>
-                    <div class='card cad-$states'>
+                    <div class='card card-$states'>
                         <div class='card-body'>
                               <img src='./uploads/$image' alt='$product_title' class=' card-img-top object-fit-contain' style='height: 300px;'>
                          

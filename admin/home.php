@@ -38,9 +38,9 @@ include '../function/function.php';
                 <li class="nav-item">
                     <a class="nav-link" href="home.php?brand">insertcBrands</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="home.php?view_brand">view Brands</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="home.php?category"> insert Category</a>
                 </li>

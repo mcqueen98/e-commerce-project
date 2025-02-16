@@ -20,16 +20,17 @@ $count_product = mysqli_num_rows($result_user);
 
 if ($count_product > 0) {  // Only proceed if there are products in the cart
     $status = 'pending';
-
+ //  $order_id = mt_rand();// insert into pending and orders have same order_id for differnt products in cart
+          
     // Process each item in the cart
     while ($row_product = mysqli_fetch_array($result_user)) {
         $cart_id = $row_product['cart_id'];
         $cart_price = $row_product['product_price'];
         
-        $quantity = $row_product['quantity']; // Get quantity for each product
-        $product_id = $row_product['product_id']; // Assuming 'product_id' is the correct foreign key
-
-        // Get product details
+        $quantity = $row_product['quantity']; 
+        $product_id = $row_product['product_id']; 
+           
+          // Get product details
         $get_product = "SELECT * FROM `products` WHERE id='$product_id'";
         $result_product = mysqli_query($conn, $get_product);
 

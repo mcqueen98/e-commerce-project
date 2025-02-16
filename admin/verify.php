@@ -1,3 +1,34 @@
+<div class="mb-3">
+                <input type="text" id="search" class="form-inline mx-3 my-2 my-lg-0" placeholder="Search by orderid" />
+</div>
+
+<!-- Vanilla JS for Search tbodyFiltering -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('search');
+        const usersTable = document.getElementById('users-table');
+        const rows = usersTable.querySelectorAll('tr');
+
+        searchInput.addEventListener('keyup', function () {
+            const query = searchInput.value.toLowerCase().trim(); // Trim the input and convert to lowercase
+
+            rows.forEach(row => {
+                const orderIdCell = row.querySelector('td:nth-child(3)'); // Select the Order ID cell
+                if (orderIdCell) { // Ensure the cell exists
+                    const orderId = orderIdCell.textContent.toLowerCase();
+                    if (orderId.includes(query) || query === '') {
+                        row.style.display = ''; // Show row
+                    } else {
+                        row.style.display = 'none'; // Hide row
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+
+
 <div class="container">
     <h2>Order Table</h2>
     <div class="table-responsive">
@@ -6,14 +37,16 @@
             <tr>
                 <th>ID</th>
                 <th>User ID</th>
-                <th>Order ID</th>
+                <th class="order">Order ID</th>
                 <th>Status</th>
+                <th>Quantity</th>
                 <th>Amount</th>
                 <th>contact</th>
                 <th>address</th>
+                <th>Date</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="users-table">
             <?php
             // Include database connection
             global $conn;
@@ -42,7 +75,9 @@
                         orders.id,
                         orders.user_id,
                         orders.status,
-                        orders.amount
+                        orders.amount,
+                        orders.date,
+                        orders.total_pro
                     FROM 
                         payment 
                     INNER JOIN 
@@ -60,6 +95,8 @@
                 $amount = $row_order['amount'];
                 $contact = $row_order['contact'];
                 $address = $row_order['address'];
+                $date = $row_order['date'];
+                $quantity = $row_order['total_pro'];
                 echo "
                 <tr>
                     <td>$num</td>
@@ -75,9 +112,11 @@
                             <button type='submit' class='btn btn-primary'>Update</button>
                         </form>
                     </td>
-                    <td>$amount</td>
+                    <td>$quantity</td>
+                    <td>Rs $amount</td>
                     <td>$contact</td>
                     <td>$address</td>
+                    <td>$date</td>
                 </tr>
                 ";
                 $num++;

@@ -17,10 +17,12 @@ secure();
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>cart (order)id</th>
-                    <th>Price</th>
+                    <th>order_id</th>
+                    <th>quantity</th>
+                    <th>Price per product</th>
                     <th>Status</th>
                     <th>Operation</th>
+                  
                 </tr>
             </thead>
             <tbody>
@@ -34,14 +36,16 @@ secure();
                 while ($order = mysqli_fetch_assoc($order_query)) {
                       $product_id = $order['product_id'];
                    $order_id = $order['id'];
+                    $quantity = $order['total_pro'];
                     $amount = $order['amount'];
                     $status = $order['status'];
                     $cart_id = $order['cart_id'];
                     echo "
                     <tr>
                     <td>{$num}</td>
-                      <td>{$cart_id}</td>
-                        <td>$ {$amount}</td>
+                      <td>{$order_id}</td>
+                      <td> {$quantity}</td>
+                        <td>Rs {$amount}</td>
                         <td>{$status}</td>";
                     
                     if ($status == 'completed') {
